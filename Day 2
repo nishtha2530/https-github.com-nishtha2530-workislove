@@ -1,0 +1,129 @@
+1.) SEQUENCE OPERATIONS- INDEXING
+
+>>>S = 'SPAM'
+>>>len(S)
+4
+>>>S[0]
+'S'
+
+>>>S[1]
+'P'
+
+>>>S[-1]
+'M'
+
+>>>[-2]
+'A'
+
+>>>S[len(S)-1]
+'M'
+
+2.) SEQUENCE OPERATIONS- SLICING
+
+>>>S
+'SPAM'
+>>>S[1:3]
+'PA'
+
+>>>S[1:]
+'PAM'
+
+>>>S[0:3]
+'SPA'
+
+>>>S[:-1]
+'SPA'
+
+>>>S[:]
+'SPAM'
+
+3.) EXCEPTION HANDELLING-
+
+Default exception handler
+>>> def fetcher(obj,index):
+        return obj[index]
+        
+>>> x = 'spam'
+>>>fetcher(x,3)
+m
+
+catching exceptions
+>>>try:
+...    fetcher(x,4)
+...except IndexError:
+...    print('got exception')
+...
+got exception
+>>>
+
+>>> def catcher():
+         try:
+             fetcher(x,4)
+         except IndexError:
+             print('got exception')
+         print('continuing')
+>>>catcher()
+got exception
+continuing
+>>>
+
+raising exceptions
+>>>try:
+...    raise IndexError
+...except IndexError:
+...   print('got exception')
+...
+got exception
+
+
+user defined exceptions
+>>>class AlreadyGotOne(Exception): pass
+
+>>>def grail():
+      raise AlreadyGotOne()
+      
+>>>try:
+...  grail()
+...except AlreadyGotOne:
+...   print('got exception')
+...
+got exception
+>>>
+
+4.) REGULAR EXPRESSION-
+import re
+
+txt = "The rain in spain"
+x = re.search("^The.*Spain$", txt)
+
+
+findall()-
+import re
+
+txt = "The rain in Spain"
+x = re.findall("ai", txt)
+print(x)
+
+
+search()-
+import re
+
+txt = "The rain in Spain"
+x = re.search("\s", txt)
+
+
+split()-
+import re
+
+txt = "The rain in Spain"
+x = re.split("\s", txt, 1)
+print(x)
+
+print("The first white-space character is located in position:", x.start())
+
+sub()-
+import re
+
+txt = "The rain in Spain"
+x = re.sub("\s", "9", txt)
+print(x)
