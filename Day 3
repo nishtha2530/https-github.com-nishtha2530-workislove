@@ -1,0 +1,135 @@
+1.)FUNCTIONS-
+
+>>> x = 'spam'
+>>> def func():
+      print(x)
+>>>func()
+
+'spam'
+
+>>> x = 'spam'
+>>>def func():
+       x='ni'
+       print(x)
+>>>func()
+>>>print(x)
+
+'ni'
+'spam'
+
+>>>x = 'spam'
+>>>def func():
+   x='ni'
+   def nested():
+       print(x)
+   nested()
+>>>func()
+>>>x
+
+2.)MODULES-
+
+>>>import sys
+>>>sys.path
+['C:\\Users\\Vijay Sales',
+ 'C:\\Users\\Vijay Sales\\anaconda3\\python37.zip',
+ 'C:\\Users\\Vijay Sales\\anaconda3\\DLLs',
+ 'C:\\Users\\Vijay Sales\\anaconda3\\lib',
+ 'C:\\Users\\Vijay Sales\\anaconda3',
+ '',
+ 'C:\\Users\\Vijay Sales\\anaconda3\\lib\\site-packages',
+ 'C:\\Users\\Vijay Sales\\anaconda3\\lib\\site-packages\\win32',
+ 'C:\\Users\\Vijay Sales\\anaconda3\\lib\\site-packages\\win32\\lib',
+ 'C:\\Users\\Vijay Sales\\anaconda3\\lib\\site-packages\\Pythonwin',
+ 'C:\\Users\\Vijay Sales\\anaconda3\\lib\\site-packages\\IPython\\extensions',
+ 'C:\\Users\\Vijay Sales\\.ipython']
+ 
+ 
+ 
+3.) LIST COMPREHENSIONS-
+ 
+ >>>ord('s')
+ 115
+ 
+ >>> res = []
+ >>>for x in 'spam':
+        res.append(ord(x))
+ >>>res
+ [115,112,97,109]
+ 
+ >>>list(map(lambda x: x**2),range(10)))
+ [0,1,4,9,16,25,36,49,64,81]
+ 
+ >>>M= [[1,2,3],
+        [4,5,6],
+        [7,8,9]
+ >>>n= [[2,2,2] ,      
+        [3,3,3],
+        [4,4,4]]
+        
+ >>>M[1]
+[4,5,6]
+
+>>>M[1][2]
+6
+
+>>>[row[1] for row in M]
+[2,5,8]
+
+>>>res = []
+>>>for row in M:
+    for col in row:
+     res.append(col + 10)
+>>>res
+[11,12,13,14,15,16,17,18,19]
+
+>>>res = []
+>>>for row in M:
+    tmp = []
+    for col in row:
+     tmp.append(col + 10)
+    res.append(tmp)
+    
+>>>res
+[[11,12,13],[14,15,16],[17,18,19]]
+
+4.)ITERATORS-
+
+>>>for x in [1,2,3,4]: print(x**2, end='')
+...
+1 4 9 16
+
+>>> for x in(1,2,3,4): print(x**3, end='')
+...
+1 8 27 64
+
+>>> for x in 'spam': print(x*2,end='')
+...
+ss pp aa mm
+
+>>>print(open('script2.py').read())
+import sys
+print(sys.path)
+x=2
+print(x**32)
+>>>open('script2.py').read()
+'import sys\nprint(sys.path)\nx = 1\nprint(x**32)\n'
+
+GENERATORS-
+
+>>>def gensquares(N):
+       for i in range(N)
+         yield i**2
+         
+>>> for i in gensquares(5):
+     print(i,end=':')
+0 : 1 : 4 : 9 : 16:
+>>>
+
+
+>>>def buildsquares(n):
+      res = []
+      for i in range(n): res.append(1**2)
+      return res
+      
+>>>for x in buildsquares(5): print(x, end=':')
+0  : 1 : 4 : 9 : 16 :
