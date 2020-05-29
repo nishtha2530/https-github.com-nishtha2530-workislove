@@ -1,0 +1,141 @@
+CLASSES AND OBJECTS-
+
+>>>class FirstClass:
+   def setData(self, value):
+       self.data = value
+   def deisplay(self):
+       print(self.data)
+       
+>>>x.setData("king")
+>>>y.setData("1234")
+>>>x.display()
+king
+>>>y.display()
+1234
+>>>x.data = "new"
+>>>x.display()
+new
+
+>>>x.anothername = "newname"
+
+>>>class SecondClass(firstClass):
+       def_init__(self,value):
+              self.data = value
+       def_add__(self, other):
+           return SecondClass(self.data + other)
+        def_str__(self):
+            return '[SecondClass: %s]'% self.data
+            
+>>>a = SecondClass('abc')
+>>>a.display()
+Currentv value = "abc"
+>>>print(a)
+[SecondClass: abc]
+
+>>>rec.name: pass
+>>>rec.name: 'bob'
+>>>rec.age = 40
+>>>print(rec.name)
+bob
+-----------------------------------------------------
+DECORATORS-
+
+>>>class Decorator:
+     def_init__(self, C):
+         self.C = C
+     def_call__(self,*args):
+         self.wrapped = self.C(*args)
+           return self
+     def_getattr__(self, attrname):
+          return getattr(self.wrapped,attrname)
+     
+     @Decorator
+     class C: ...
+     x= C()
+     y= C()
+     
+ >>> def Decorator(C):
+        class Wrapper:
+            def_init__(self,*args):
+                 self.wrapped = C(*args)
+        return Wrapper
+        
+        Class Wrapper: ...
+        def Decorator(C):
+              def onCall(*args):
+                    return Wrapper(C(*args))
+               return onClass     
+       
+-------------------------------------------------------------
+CLOSURES-
+
+def outerFunction(text): 
+	text = text 
+
+	def innerFunction(): 
+		print(text) 
+
+	return innerFunction 
+if __name__ == '__main__': 
+	myFunction = outerFunction('Hey!') 
+	myFunction() 
+
+-----------------------------------------------------
+
+import logging 
+logging.basicConfig(filename='example.log', level=logging.INFO) 
+
+
+def logger(func): 
+	def log_func(*args): 
+		logging.info( 
+			'Running "{}" with arguments {}'.format(func.__name__, args)) 
+		print(func(*args)) 
+	return log_func			 
+
+def add(x, y): 
+	return x+y 
+
+def sub(x, y): 
+	return x-y 
+
+add_logger = logger(add) 
+sub_logger = logger(sub) 
+
+add_logger(3, 3) 
+add_logger(4, 5) 
+
+sub_logger(10, 5) 
+sub_logger(20, 10) 
+
+
+6
+9
+5
+10
+
+--------------------------------------------------------------------------------
+DESCRIPTORS-
+
+class Descriptor(object): 
+
+	def __init__(self, name =''): 
+		self.name = name 
+
+	def __get__(self, obj, objtype): 
+		return "{}for{}".format(self.name, self.name) 
+
+	def __set__(self, obj, name): 
+		if isinstance(name, str): 
+			self.name = name 
+		else: 
+			raise TypeError("Name should be string") 
+		
+class GFG(object): 
+	name = Descriptor() 
+	
+g = GFG() 
+g.name = "NISHTHA"
+print(g.name) 
+
+NISHTHAforNISHTHA
