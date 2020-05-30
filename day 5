@@ -1,0 +1,137 @@
+FILE HANDLING-
+
+file = open('classes.txt','r')
+for each in file:
+     print(each)
+     
+>>>class FirstClass:
+   def setData(self, value):
+       self.data = value
+   def deisplay(self):
+       print(self.data)
+       
+>>>x.setData("king")
+>>>y.setData("1234")
+>>>x.display()
+king
+>>>y.display()
+1234
+>>>x.data = "new"
+>>>x.display()
+new
+
+>>>x.anothername = "newname"
+----------------------------------------------------------
+DATABASE CONNECTIVITY-
+
+import mysql.connector
+C:\Users\Nishtha>python demo_mysql_test.py
+
+connection-
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="myusername",
+  passwd="mypassword"
+)
+
+print(mydb)
+
+C:\Users\My Name>python demo_mysql_connection.py
+<mysql.connector.connection.MySQLConnection object ar 0x016645F0>
+
+-------------------------------------------------------------------------
+
+PYTHON DATABASE API-
+
+CONNECTING-
+#!/usr/bin/python
+
+import MySQLdb
+
+# Open database connection
+db = MySQLdb.connect("localhost","testuser","test123","TESTDB" )
+
+# prepare a cursor object using cursor() method
+cursor = db.cursor()
+
+# execute SQL query using execute() method.
+cursor.execute("SELECT VERSION()")
+
+# Fetch a single row using fetchone() method.
+data = cursor.fetchone()
+print "Database version : %s " % data
+
+# disconnect from server
+db.close()
+
+-------------
+
+USING INSERT-
+import MySQLdb
+
+# Open database connection
+db = MySQLdb.connect("localhost","testuser","test123","TESTDB" )
+
+# prepare a cursor object using cursor() method
+cursor = db.cursor()
+
+# Prepare SQL query to INSERT a record into the database.
+sql = """INSERT INTO EMPLOYEE(FIRST_NAME,
+         LAST_NAME, AGE, SEX, INCOME)
+         VALUES ('Mac', 'Mohan', 20, 'M', 2000)"""
+try:
+   # Execute the SQL command
+   cursor.execute(sql)
+   # Commit your changes in the database
+   db.commit()
+except:
+   # Rollback in case there is any error
+   db.rollback()
+
+# disconnect from server
+db.close()
+--------------------
+
+USING UPDATE-
+#!/usr/bin/python
+
+import MySQLdb
+
+# Open database connection
+db = MySQLdb.connect("localhost","testuser","test123","TESTDB" )
+
+# prepare a cursor object using cursor() method
+cursor = db.cursor()
+
+# Prepare SQL query to UPDATE required records
+sql = "UPDATE EMPLOYEE SET AGE = AGE + 1
+                          WHERE SEX = '%c'" % ('M')
+try:
+   # Execute the SQL command
+   cursor.execute(sql)
+   # Commit your changes in the database
+   db.commit()
+except:
+   # Rollback in case there is any error
+   db.rollback()
+
+# disconnect from server
+db.close()
+
+----------------------------------
+
+PERFORMING TRANSACTIONS-
+
+# Prepare SQL query to DELETE required records
+sql = "DELETE FROM EMPLOYEE WHERE AGE > '%d'" % (20)
+try:
+   # Execute the SQL command
+   cursor.execute(sql)
+   # Commit your changes in the database
+   db.commit()
+except:
+   # Rollback in case there is any error
+   db.rollback()
