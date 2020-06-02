@@ -1,0 +1,123 @@
+LINEAR ALGEBRA WITH NUMPY-
+
+import numpy as np
+ 
+>>>A = np.array([[6, 1, 1],
+              [4, -2, 5],
+              [2, 8, 7]])
+>>>print("Rank of A:", np.linalg.matrix_rank(A))
+Rank of A: 3
+ 
+>>>print("\nTrace of A:", np.trace(A))
+Trace of A: 11
+ 
+>>>print("\nDeterminant of A:", np.linalg.det(A))
+Determinant of A: -306.0
+
+>>>print("\nInverse of A:\n", np.linalg.inv(A)
+ [[ 0.17647059 -0.00326797 -0.02287582]
+ [ 0.05882353 -0.13071895  0.08496732]
+ [-0.11764706  0.1503268   0.05228758]]
+ 
+>>>print("\nMatrix A raised to power 3:\n",np.linalg.matrix_power(A, 3))
+Inverse of A:
+ [[ 0.17647059 -0.00326797 -0.02287582]
+ [ 0.05882353 -0.13071895  0.08496732]
+ [-0.11764706  0.1503268   0.05228758]]
+           
+-------------------------------------------------------------------------           
+           
+ ARRAY CREATION-
+
+>>>a = np.array([0, 1, 2, 3])
+>>>a
+array([0,1,2,3])
+-----------------------------------------------------------------------------
+VECTORS-
+import numpy as np
+
+In [2]: a, b, c = 3, 4, 5
+
+In [3]: np.random.seed(0)
+
+In [4]: X = np.random.randint(10, size=(b,c))
+
+In [5]: W = np.random.randint(10, size=(a,b))
+
+In [6]: y = np.random.randint(a, size=(c,1))
+
+In [7]: X
+Out[7]: 
+array([[5, 0, 3, 3, 7],
+       [9, 3, 5, 2, 4],
+       [7, 6, 8, 8, 1],
+       [6, 7, 7, 8, 1]])
+
+In [8]: W
+Out[8]: 
+array([[5, 9, 8, 9],
+       [4, 3, 0, 3],
+       [5, 0, 2, 3]])
+
+In [9]: y
+Out[9]: 
+array([[0],
+       [1],
+       [1],
+       [2],
+       [0]])
+
+In [10]: W[y.ravel()] + X.T
+Out[10]: 
+array([[10, 18, 15, 15],
+       [ 4,  6,  6, 10],
+       [ 7,  8,  8, 10],
+       [ 8,  2, 10, 11],
+       [12, 13,  9, 10]])
+
+In [11]: W[y.ravel()] = W[y.ravel()] + X.T
+
+In [12]: W
+Out[12]: 
+array([[12, 13,  9, 10],
+       [ 7,  8,  8, 10],
+       [ 8,  2, 10, 11]])
+       
+       output-
+       W = [[17, 22, 16, 16],
+     [ 7, 11, 14, 17],
+     [ 8,  2, 10, 11]]
+     
+-----------------------------------------------------------------------------------
+
+BROADCASTING-
+
+macros = array([ 
+  [0.8, 2.9, 3.9], 
+  [52.4, 23.6, 36.5], 
+  [55.2, 31.7, 23.9], 
+  [14.4, 11, 4.9] 
+   ]) 
+  
+
+result = zeros_like(macros) 
+  
+cal_per_macro = array([3, 3, 8]) 
+  
+
+ for i in range(macros.shape[0]): 
+     result[i, :] = macros[i, :] * cal_per_macroresult 
+
+output-
+array([[   2.4,    8.7,   31.2 ],
+       [  157.2,   70.8,  292 ],
+       [   165.6,  95.1,   191.2],
+       [   43.2,   33,    39.2]])
+      
+ ---------------------------------------------------------------------------------
+  DATE AND TIME-
+  import time;  
+   ticks = time.time()
+   print "Number of ticks since 12:00am, January 1, 1970:", ticks
+
+    Number of ticks since 12:00am, January 1, 1970: 7186862.73399
