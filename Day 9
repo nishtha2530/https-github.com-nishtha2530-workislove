@@ -1,0 +1,110 @@
+INTRODUCTION TO PANDAS-
+
+  import pandas as pd
+  
+1. The panda library helps in extensive usage of bigger numbers and tables of data in comparison of numpy libraries.
+2. Panda library specify data structures and their usage in high level computing of scientific python.
+3. they signify the simpler reduction of tabular data through different data structures such as series, dataframe,querying, location attributes and dropping data.
+4. 'none' type represents lack of data.
+
+---------------------------------------------------------
+PANDA DATA STRUCTURES-
+1. SERIES-
+    pd.Series()
+    
+>>> import pandas as pd
+>>>animals=['Tiger' , 'bear', 'dog' ] 
+>>>pd.Series(animals)
+
+0    tiger
+1      cat
+2      dog
+dtype: object
+-----------
+2. DATAFRAMES-
+     df=pd.Dataframe([])
+     
+import pandas as pd
+ 
+
+lst = ['astrid', 'jan', 'michal', 'pam', 
+            'jim', 'stanley', 'creed']
+ 
+
+df = pd.DataFrame(lst)
+print(df)     
+         0
+0   astrid
+1      jan
+2   michal
+3      pam
+4      jim
+5  stanley
+6    creed
+----------------
+3. PANEL-
+
+import pandas as pd
+import numpy as np
+
+data = np.random.rand(2,4,5)
+p = pd.Panel(data)
+print p
+
+output- 
+     <class 'pandas.core.panel.Panel'>
+Dimensions: 2 (items) x 4 (major_axis) x 5 (minor_axis)
+Items axis: 0 to 1
+Major_axis axis: 0 to 3
+Minor_axis axis: 0 to 4
+
+---------------------------------------------------
+CREATING PANDA DATAFRAMES-
+1. USING python objects-
+      
+>>>d = {'col1': [1, 2], 'col2': [3, 4]}
+>>>df = pd.DataFrame(data=d)
+>>>df
+   col1  col2
+0     1     3
+1     2     4
+      
+2. USING files
+   
+Alabama[edit]
+Auburn (Auburn University)[1]
+Florence (University of North Alabama)
+Jacksonville (Jacksonville State University)[2]
+Livingston (University of West Alabama)[2]
+Montevallo (University of Montevallo)[2]
+Troy (Troy University)[2]
+Tuscaloosa (University of Alabama, Stillman College, Shelton State)[3][4]
+Tuskegee (Tuskegee University)[5]
+Alaska[edit]
+Fairbanks (University of Alaska Fairbanks)[2]
+Arizona[university]
+Flagstaff (Northern Arizona University)[6]
+Tempe (Arizona State University)
+Tucson (University of Arizona)
+
+   df = pd.read_csv('filename.txt', sep=";", names=['Region Name'])
+  
+  df = df[~df['Region Name'].str.contains('\[edit\]')].reset_index(drop=True)
+print (df)
+      State   Region Name
+0   Alabama        Auburn
+1   Alabama      Florence
+2   Alabama  Jacksonville
+3   Alabama    Livingston
+4   Alabama    Montevallo
+5   Alabama          Troy
+6   Alabama    Tuscaloosa
+7   Alabama      Tuskegee
+8    Alaska     Fairbanks
+9   Arizona     Flagstaff
+10  Arizona         Tempe
+11  Arizona        Tucson
+
+
+
+
