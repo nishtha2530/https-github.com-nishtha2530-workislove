@@ -1,0 +1,170 @@
+ACCESSING DATA FROM PANDA DATA STRUCTURES-
+
+import pandas as pd 
+import numpy as np 
+  
+
+data = np.array(['n', 'i', 's', 'h', 't', 'h', 'a', 's', 'h', 'a', 'r', 'm', 'a']) 
+ser = pd.Series(data) 
+   
+   
+ 
+print(ser[0])
+
+output- n
+
+-----------------------------------------------------------
+READING AND WRITING DATA WITH PANDAS-
+1.READING-
+
+import pandas as pd
+exchange_rates = pd.read_csv("data1/dollar_euro.txt",
+                             sep="\t")
+print(exchange_rates)
+
+OUTPUT-
+    Year   Average  Min USD/EUR  Max USD/EUR  Working days
+0   2016  0.901696     0.864379     0.959785           247
+1   2015  0.901896     0.830358     0.947688           256
+2   2014  0.753941     0.716692     0.823655           255
+3   2013  0.753234     0.723903     0.783208           255
+4   2012  0.778848     0.743273     0.827198           256
+5   2011  0.719219     0.671953     0.775855           257
+6   2010  0.755883     0.686672     0.837381           258
+7   2009  0.718968     0.661376     0.796495           256
+8   2008  0.683499     0.625391     0.802568           256
+9   2007  0.730754     0.672314     0.775615           255
+10  2006  0.797153     0.750131     0.845594           255
+11  2005  0.805097     0.740357     0.857118           257
+12  2004  0.804828     0.733514     0.847314           259
+13  2003  0.885766     0.791766     0.963670           255
+14  2002  1.060945     0.953562     1.165773           255
+15  2001  1.117587     1.047669     1.192748           255
+16  2000  1.085899     0.962649     1.211827           255
+17  1999  0.939475     0.848176     0.998502           261
+
+---------------------
+2. WRITING-
+
+shop1 = {"foo":{2010:23, 2011:25}, "bar":{2010:13, 2011:29}}
+shop2 = {"foo":{2010:223, 2011:225}, "bar":{2010:213, 2011:229}}
+
+shop1 = pd.DataFrame(shop1)
+shop2 = pd.DataFrame(shop2)
+both_shops = shop1 + shop2
+print("Sales of shop1:\n", shop1)
+print("\nSales of both shops\n", both_shops)
+Sales of shop1:
+       foo  bar
+2010   23   13
+2011   25   29
+
+Sales of both shops
+       foo  bar
+2010  246  226
+2011  250  258
+shops = pd.concat([shop1, shop2], keys=["one", "two"])
+shops
+Output::
+foo	bar
+one	2010	23	13
+2011	25	29
+two	2010	223	213
+2011	225	229
+We want to swap the hierarchical indices. For this we will use 'swaplevel':
+
+shops.swaplevel()
+shops.sort_index(inplace=True)
+shops
+Output::
+foo	bar
+one	2010	23	13
+2011	25	29
+two	2010	223	213
+2011	225	229
+
+-------------------------------------------------------------------------
+INDEXING AND SLICING IN DATAFRAMES-
+
+surveys_df.iloc[0:3, 1:4]
+which gives the output
+
+   month  day  year
+0      7   16  1977
+1      7   16  1977
+2      7   16  1977
+
+----------------------------------------
+AGGREGATION
+
+*import pandas as pd 
+import nba.csv  
+
+df = pd.read_csv("nba.csv") 
+  
+
+df[:10] 
+
+
+
+*df.aggregate(['sum', 'min']) 
+
+
+*
+import pandas as pd 
+  df = pd.read_csv("nba.csv") 
+  df.aggregate({"Number":['sum', 'min'], 
+              "Age":['max', 'min'], 
+              "Weight":['min', 'sum'],  
+              "Salary":['sum']})
+              
+------------------------------------------------------------------------    
+DATA MERGING-
+
+import pandas as pd
+import numpy as np
+
+class display(object):
+   
+    template = """<div style="float: left; padding: 10px;">
+    <p style='font-family:"Courier New", Courier, monospace'>{0}</p>{1}
+    </div>"""
+    def __init__(self, *args):
+        self.args = args
+        
+    def _repr_html_(self):
+        return '\n'.join(self.template.format(a, eval(a)._repr_html_())
+                         for a in self.args)
+    
+    def __repr__(self):
+        return '\n\n'.join(a + '\n' + repr(eval(a))
+                           for a in self.args)
+                           
+                           
+                           
+     ---------------------------------------------------
+     
+     df1 = pd.DataFrame({'employee': ['Bob', 'Jake', 'Lisa', 'Sue'],
+                    'group': ['Accounting', 'Engineering', 'Engineering', 'HR']})
+df2 = pd.DataFrame({'employee': ['Lisa', 'Bob', 'Jake', 'Sue'],
+                    'hire_date': [2004, 2008, 2012, 2014]})
+display('df1', 'df2')
+
+
+df1                                   
+
+employee	group
+0	Bob	Accounting
+1	Jake	Engineering
+2	Lisa	Engineering
+3	Sue	HR
+                        df2
+
+                            employee	hire_date
+                            0	Lisa	2004
+                            1	Bob	2008
+                            2	Jake	2012
+                            3	Sue	2014
+                            
+  ---------------------------------------------------------------------------                          
+              
