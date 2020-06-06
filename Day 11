@@ -1,0 +1,116 @@
+OnlineRetail dataset-
+import pandas as pd
+online_retail = r"C:\Users\Vijay sales\Downloads"
+file= pd.read_excel(online_retail)
+print(file)
+
+--------------------------------------
+SUM, MEAN, MAX, MIN
+
+print("Sum: ",file["UnitPrice"].sum())
+print("Mean: ",file["UnitPrice"].mean())
+print("Maximum: ",file["UnitPrice"].max())
+print("Minimum: ",file["UnitPrice"].min())
+'''Output:
+Sum:  2498803.974
+Mean:  4.611113626088513
+Maximum:  38970.0
+Minimum:  -11062.06
+
+-------------------------------------------------------------
+STANDARD DEVIATION
+
+print(file.std(axis = 0, skipna = True))
+'''Output:
+Quantity       218.081158
+UnitPrice       96.759853
+CustomerID    1713.600303
+dtype: float64
+'''
+
+# USING COUNT()
+print(file.count())
+'''output:
+InvoiceNo      541909
+StockCode      541909
+Description    540455
+Quantity       541909
+InvoiceDate    541909
+UnitPrice      541909
+CustomerID     406829
+Country        541909
+'''
+# GROUPBY():
+
+print(file.groupby('UnitPrice')['CustomerID'].min())
+'''OUTPUT:
+UnitPrice
+-11062.060        NaN
+ 0.000        12415.0
+ 0.001        13405.0
+ 0.010        16422.0
+ 0.030        12901.0
+               ...   
+ 13541.330        NaN
+ 16453.710        NaN
+ 16888.020        NaN
+ 17836.460        NaN
+ 38970.000    15098.0
+Name: CustomerID, Length: 1630, dtype: float64
+'''
+print(file.groupby('UnitPrice')['CustomerID'].max())
+'''OUTPUT:
+UnitPrice
+-11062.060        NaN
+ 0.000        18059.0
+ 0.001        16198.0
+ 0.010        16422.0
+ 0.030        16422.0
+               ...   
+ 13541.330        NaN
+ 16453.710        NaN
+ 16888.020        NaN
+ 17836.460        NaN
+ 38970.000    15098.0
+Name: CustomerID, Length: 1630, dtype: float64
+'''
+
+print(file.groupby(["UnitPrice","Country"]).mean())
+'''
+OUTPUT:
+
+                            Quantity    CustomerID
+UnitPrice Country                                 
+-11062.06 United Kingdom    1.000000           NaN
+ 0.00     Australia       102.666667  12420.333333
+          EIRE             68.500000  14911.000000
+          France            1.000000  12437.000000
+          Germany           1.000000  12625.000000
+...                              ...           ...
+ 13541.33 United Kingdom   -0.333333           NaN
+ 16453.71 United Kingdom   -1.000000           NaN
+ 16888.02 United Kingdom   -1.000000           NaN
+ 17836.46 United Kingdom   -1.000000           NaN
+ 38970.00 United Kingdom   -1.000000  15098.000000
+
+[3371 rows x 2 columns]
+'''
+---------------------------------------------------
+CUMILATIVE SALES
+
+print(file.UnitPrice.cumsum())
+''' output:
+0         2.550000e+00
+1         5.940000e+00
+2         8.690000e+00
+3         1.208000e+01
+4         1.547000e+01
+              ...     
+541904    2.498789e+06
+541905    2.498791e+06
+541906    2.498795e+06
+541907    2.498799e+06
+541908    2.498804e+06
+Name: UnitPrice, Length: 541909, dtype: float64
+'''
+
