@@ -1,1 +1,7 @@
 DATASET FOR COVID-19
+import pandas as pd
+Covid_19 = (r"C:\Users\Vijay Sales\Downloads\Covid19")
+file= pd.read_excel(Covid19)
+print(file)
+----------------------
+df.shape
