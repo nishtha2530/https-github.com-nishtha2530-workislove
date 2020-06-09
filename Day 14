@@ -1,0 +1,153 @@
+INTRODUCTION TO SEABORN-
+
+Seaborn is a library for making statistical graphics in Python. It is built on top of matplotlib and closely integrated 
+with pandas data structures.
+
+Here is some of the functionality that seaborn offers:
+
+1. A dataset-oriented API for examining relationships between multiple variables.
+2. Specialized support for using categorical variables to show observations or aggregate statistics.
+3. Options for visualizing univariate or bivariate distributions and for comparing them between subsets of data.
+4. Automatic estimation and plotting of linear regression models for different kinds dependent variables.
+5. Convenient views onto the overall structure of complex datasets.
+6. High-level abstractions for structuring multi-plot grids that let you easily build complex visualizations.
+7. Concise control over matplotlib figure styling with several built-in themes.
+8. Tools for choosing color palettes that faithfully reveal patterns in your data.
+
+import seaborn as sns
+sns.set()
+tips = sns.load_dataset("tips")
+sns.relplot(x="total_bill", y="tip", col="time",
+            hue="smoker", style="smoker", size="size",
+            data=tips);
+            
+---------------------------------------------
+DISTIRBUTION PLOT-
+
+import seaborn as sns, numpy as np
+sns.set(); np.random.seed(0)
+x = np.random.randn(100)
+ax = sns.distplot(x)
+---------------------------------------
+
+CATEGORICAL PLOTS-
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.set(style="ticks", color_codes=True)
+
+tips = sns.load_dataset("tips")
+sns.catplot(x="day", y="total_bill", data=tips);
+
+jitter helps in controlling magnitude of jitter or disables it.
+
+sns.catplot(x="day", y="total_bill", jitter=False, data=tips);
+
+-------------------------------------------------------------------------
+
+MATRIX PLOTS- 
+
+   HEATMAPS
+   
+   # import the necessary libraries 
+import seaborn as sns 
+import matplotlib.pyplot as plt % matplotlib inline 
+
+# load the tips dataset 
+dataset = sns.load_dataset('tips') 
+
+# first five entries of the tips dataset 
+dataset.head() 
+
+# correlation between the different parameters 
+tc = dataset.corr() 
+
+# plot a heatmap of the correlated data 
+sns.heatmap(tc) 
+----------------------
+    CLUSTER MAPS
+    
+    # import the necessary libraries 
+import pandas as pd 
+import seaborn as sns 
+import matplotlib.pyplot as plt % matplotlib inline 
+  
+# load the flights dataset 
+fd = sns.load_dataset('flights') 
+  
+# make a dataframe of the data  
+df = pd.pivot_table(values ='passengers', index ='month',  
+                    columns ='year', data = fd) 
+  
+# first five entries of the dataset 
+df.head() 
+  
+# make a clustermap from the dataset 
+sns.clustermap(df, cmap ='plasma') 
+---------------------------------------------------------------
+GRID-
+
+import pandas as pd
+import seaborn as sb
+from matplotlib import pyplot as plt
+df = sb.load_dataset('tips')
+g = sb.FacetGrid(df, col = "time")
+g.map(plt.hist, "tip")
+plt.show()
+
+--------------------------------------------
+
+REGRESSION PLOT-
+
+1 variable-
+    
+    import seaborn as sns; sns.set(color_codes=True)
+    tips = sns.load_dataset("tips")
+    ax = sns.regplot(x="total_bill", y="tip", data=tips)
+    
+ 2 variables-
+       import seaborn as sns; sns.set(color_codes=True)
+       tips = sns.load_dataset("tips")
+       ax = sns.regplot(x="total_bill", y="tip", data=tips)
+       
+ for discrete x continous variable-
+       ax = sns.regplot(x="size", y="total_bill", data=tips, x_jitter=.1)
+       
+ high order regression
+       ans = sns.load_dataset("anscombe")
+       ax = sns.regplot(x="x", y="y", data=ans.loc[ans.dataset == "II"],
+                 scatter_kws={"s": 80},
+                 order=2, ci=None)
+                 
+ robust regression-
+       ax = sns.regplot(x="x", y="y", data=ans.loc[ans.dataset == "III"],
+                 scatter_kws={"s": 80},
+                 robust=True, ci=None)
+                 
+ logistic regression-
+       tips["big_tip"] = (tips.tip / tips.total_bill) > .175
+       ax = sns.regplot(x="total_bill", y="big_tip", data=tips,
+                 logistic=True, n_boot=500, y_jitter=.03)
+                 
+-----------------------------------------------------------------------------------------------
+STYLES AND COLOUR IN SEABORN-
+
+inserting palette-
+
+   palette = sns.color_palette("bright")
+   sns.palplot(palette)
+
+for seaborn and matplotlib together-
+   sns.set()
+   for col in 'xy':
+   plt.hist(data[col], normed=True, alpha=0.5)
+  
+color brewer palette-
+  custom_palette = sns.color_palette("Paired", 9)
+  sns.palplot(custom_palette)
+
+qualitative palette-
+  qualitative_colors = sns.color_palette("Set3", 10)
+  sns.palplot(qualitative_colors)
+  
+  ---------------------------------------------------------
