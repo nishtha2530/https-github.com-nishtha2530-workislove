@@ -1,0 +1,40 @@
+SHOWING THE TOP 5 STATES HAVING MOST OF THE CASES OF CORONAVIRUS ON INDIA'S MAP FROM PREVIOUSLY SHARED COVID-19 DATASET-
+
+import seaborn as sns
+import geopandas as gpd
+import pandas as pd 
+import numpy as np 
+import matplotlib.pyplot as plt
+sns.set_style('whitegrid')
+fp = r"C:\Users\VijaySales\Downloads\Indian_states.shp"
+map_df = gpd.read_file(fp)
+map_df
+(shows dataset)
+
+Plotting map-
+map_df.plot()
+
+Import covid file -
+df = r"C:\Users\VijaySales\Downloads\Datasets.csv"
+d = pd.read_csv(df)
+
+d.head(10)
+
+(shows data)
+
+drop irrelevant columns-
+d.drop(['Recovered', 'deaths', 'active'], axis  = 1, implace = True)
+
+now we merge datasets to acquire the obtained results-
+merged = map_df.set_index('st_nm').join(d.set_index('state'))
+merged.head(40)
+
+DATA CLEANING-
+merged["confirmed"].fillna(0, inplace = true)
+merged
+
+Now, plotting the entire gragh-
+ fid,ax  = plt.subplots(1, figsize = (10,6))
+ ax.axis('off')
+ ax.set_title('covid data 2020 statewise', fontdict={'fontsize': '35', 'fontweight' : '3'})
+ merged.plot(column = 'confirmed', cmap = 'PuBu', linewidth = 0.8, ax=ax, edgecolor = '0.6', legend = True)
