@@ -1,0 +1,135 @@
+STATISTICAL MODEL IN PYTHON-
+
+import numpy as np
+
+# Define a python list
+a_list = [2, 4, -1, 5.5, 3.5, -2, 5, 4, 6.5, 7.5]
+
+# Convert the list into numpy array
+an_array = np.array(a_list)
+
+# Compute and print various statistics
+print('Mean:', an_array.mean())
+print('Median:', np.median(an_array))
+print('Range (Max - min):', np.ptp(an_array))
+print('Standard deviation:', an_array.std())
+print('80th percentile:', np.percentile(an_array, 80))
+print('0.2-quantile:', np.quantile(an_array, 0.2))
+
+OUTPUT-
+Mean:3.5
+Median:4.0
+Range (Max - min): 9.5
+Standard deviation: 2.9068883707497264
+80th percentile: 5.699999999999999
+0.2-quantile: 1.4000000000000001
+
+------------------------------------------
+LINEAR REGRESSION USING STATE MODELS LIBRARY-
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+dataset = pd.read_csv('D:\Datasets\student_scores.csv')
+dataset.shape
+(25, 2)
+dataset.head()
+
+
+   Hours Scores
+0	2.5	 21
+1	5.1	 47
+2	3.2	 27
+3	8.5	 75
+4	3.5	 30
+
+dataset.describe()
+
+           Hours      Scores
+count    25.000000   25.000000
+mean     5.0120000   51.480000
+std      2.525094    25.286887
+min      1.1000000   17.000000
+25%      2.700000    30.000000
+50%      4.800000    47.000000
+75%      7.400000    75.000000
+max      9.200000    95.000000
+
+dataset.plot(x='Hours', y='Scores', style='o')
+plt.title('Hours vs Percentage')
+plt.xlabel('Hours Studied')
+plt.ylabel('Percentage Score')
+plt.show()
+
+
+
+PRESENTING DATA-
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, 1].values
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+TRAINING ALGO-
+
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+
+
+-----------------------------------------------------------------------
+
+ANOVA USING PYTHON-
+import pandas as pd
+import researchpy as rp
+df = pd.read_csv("https://raw.githubusercontent.com/researchpy/Data-sets/master/difficile.csv")
+df.drop('person', axis= 1, inplace= True)
+
+# Recoding value from numeric to string
+df['dose'].replace({1: 'placebo', 2: 'low', 3: 'high'}, inplace= True)
+
+df.info()
+
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 15 entries, 0 to 14
+Data columns (total 2 columns):
+dose      15 non-null object
+libido    15 non-null int64
+dtypes: int64(1), object(1)
+memory usage: 320.0+ bytes
+    
+rp.summary_cont(df['libido'])
+Variable	N	Mean	SD	SE	95% Conf.	Interval
+0	libido	15.0	3.466667	1.76743	0.456349	2.487896	4.445437
+
+rp.summary_cont(df['libido'].groupby(df['dose']))
+-----------------------------------
+USING STATEMODELS-
+ols("outcome_variable ~ independent_variable", data= data_frame).fit()
+ols("outcome_variable ~ C(independent_variable)", data= data_frame).fit()
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+model = ols('libido ~ C(dose)', data=df).fit()
+aov_table = sm.stats.anova_lm(model, typ=2)
+aov_table
+
+def anova_table(aov):
+    aov['mean_sq'] = aov[:]['sum_sq']/aov[:]['df']
+
+    aov['eta_sq'] = aov[:-1]['sum_sq']/sum(aov['sum_sq'])
+
+    aov['omega_sq'] = (aov[:-1]['sum_sq']-(aov[:-1]['df']*aov['mean_sq'][-1]))/(sum(aov['sum_sq'])+aov['mean_sq'][-1])
+
+    cols = ['sum_sq', 'df', 'mean_sq', 'F', 'PR(>F)', 'eta_sq', 'omega_sq']
+    aov = aov[cols]
+    return aov
+
+anova_table(aov_table)
+
+
+
+
+
+
