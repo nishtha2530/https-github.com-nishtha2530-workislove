@@ -1,0 +1,75 @@
+Regression Analysis-
+
+Regression analysis is a reliable method of identifying which variables have impact on a topic of interest. The process of performing a regression allows you
+to confidently determine which factors matter most, which factors can be ignored, and how these factors influence each other.
+
+In order to understand regression analysis fully, it’s essential to comprehend the following terms:
+Dependent Variable: This is the main factor that you’re trying to understand or predict. 
+Independent Variables: These are the factors that you hypothesize have an impact on your dependent variable.
+
+In order to conduct a regression analysis, you’ll need to define a dependent variable that you hypothesize is being influenced by one or several independent variables.
+
+You’ll then need to establish a comprehensive dataset to work with. Administering surveys to your audiences of interest is a terrific way to establish this dataset.
+Your survey should include questions addressing all of the independent variables that you are interested in.
+
+
+(Plotting your data is the first step in figuring out if there is a relationship between your independent and dependent variables)
+
+Our dependent variable (in this case, the level of event satisfaction) should be plotted on the y-axis, while our independent variable (the price of the event ticket) should
+be plotted on the x-axis.
+
+Once your data is plotted, you may begin to see correlations. 
+
+The regression line represents the relationship between your independent variable and your dependent variable. 
+
+Excel will even provide a formula for the slope of the line, which adds further context to the relationship between your independent and dependent variables. 
+
+The formula for a regression line might look something like Y = 100 + 7X + error term.
+
+This tells you that if there is no “X”, then Y = 100. If X is our increase in ticket price, this informs us that if there is no increase in ticket price, 
+event satisfaction will still increase by 100 points. 
+
+
+Types of Regression –
+
+Linear regression
+Logistic regression
+Polynomial regression
+Stepwise regression
+Stepwise regression
+Ridge regression
+Lasso regression
+ElasticNet regression
+# importing libraries 
+import numpy as np 
+import matplotlib.pyplot as plt 
+from sklearn.linear_model import LinearRegression 
+----------------------------------------------------------------
+LINEAR REGRESSION-
+
+x = 11 * np.random.random((10, 1)) 
+
+# y = a * x + b 
+y = 1.0 * x + 3.0
+
+# create a linear regression model 
+model = LinearRegression() 
+model.fit(x, y) 
+
+# predict y from the data where the x is predicted from the x 
+x_pred = np.linspace(0, 11, 100) 
+y_pred = model.predict(x_pred[:, np.newaxis]) 
+
+# plot the results 
+plt.figure(figsize =(3, 5)) 
+ax = plt.axes() 
+ax.scatter(x, y) 
+
+ax.plot(x_pred, y_pred) 
+ax.set_xlabel('predictors') 
+ax.set_ylabel('criterion') 
+ax.axis('tight') 
+
+plt.show() 
+
+
