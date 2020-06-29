@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Covid-19 Prediction Model</title>
+    <h1><b><center><font size = 25>'Prediction of Rise and Fall in Covid-19 cases At Global Level'</font></center></b></h1>
+    <center><b><font size = 5>Presented By:</font></b></center><br>
+    <center><font size = 5>Ashita Saxena   (Data Science intern, Internity Foundation)<br>
+        Nishtha Sharma   (Data Science intern, Internity Foundation)</font></center><br><br>
+
+    <center><iframe width="600" height="600" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~Ashita/8.embed"></iframe></center><br>
+    <center><iframe width="600" height="600" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~Ashita/2.embed"></iframe></center><br>
+    <center><iframe width="600" height="600" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~Ashita/10.embed"></iframe></center>
+
+    <center><iframe width="600" height="600" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~Ashita/12.embed"></iframe></center><br>
+    <center><iframe width="600" height="600" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~Ashita/14.embed"></iframe></center><br>
+    <center><iframe width="600" height="600" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~Ashita/16.embed"></iframe></center><br>
+
+    <center><iframe width="600" height="600" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~Ashita/18.embed"></iframe></center><br>
+    <center><iframe width="600" height="600" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~Ashita/20.embed"></iframe></center><br>
+    <center><iframe width="600" height="600" frameborder="0" scrolling="no" src="https://chart-studio.plotly.com/~Ashita/22.embed"></iframe></center><br>
+
+
+<link href=”http://cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.css" rel=”stylesheet” type=”text/css”>
+ <link href=”http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.4.min.css" rel=”stylesheet” type=”text/css”>
+
+<script src=”https://cdn.bokeh.org/bokeh/release/bokeh-2.0.1.min.js"></script>
+ <script src=”https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.0.1.min.js"></script>
+{{ script | safe }}
+</head>
+<body>
+{{ div | safe }}
+</body>
+</html>
